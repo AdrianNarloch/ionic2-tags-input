@@ -1,29 +1,30 @@
-# Ionic2 Tags Input
-**Ionic 2** Module which allows to write the content in popular tags form.
+# Ionic 2 Tags Input
+
+An **Ionic 2** module that lets users enter and manage values in a tag/chip style UI.
 
 ## Features
 - Custom labels and placeholders
-- Maximum length of word restriction
-- Maximum amount of items restriction
-- Prevent duplicates restriction
-- Callback fn after added or removed tag
+- Maximum tag length restriction
+- Maximum number of tags restriction
+- Optional duplicate prevention
+- Callbacks when a tag is added or removed
 
 
 ![Gif](https://github.com/sub5111/ionic2-tags-input/blob/master/tags-input-example.gif?raw=true)
 
 ## Installation
 
-#### 1. Install the NPM Package
+### 1. Install the npm package
+
 ```
 npm install --save ionic2-tags-input
 ```
 
-#### 2. Import `TagsInputModule` module into your app's module.
+### 2. Import `TagsInputModule` in your app module
 
 ```typescript
 import { TagsInputModule } from 'ionic2-tags-input';
 
-// import the module
 @NgModule({
   ...
   imports: [
@@ -34,25 +35,23 @@ import { TagsInputModule } from 'ionic2-tags-input';
 
 ## Usage
 
-Bind component to formControl or ngModel
+Bind the component to a `FormControl`/`formControlName` (Reactive Forms) or `ngModel`.
+
 ```html
 <tags-input formControlName="animals"></tags-input>
 ```
 
-Form structure
+The component value is an array of objects shaped like `{ name: string }`.
+
+Reactive Forms example:
+
 ```typescript
-  public animals:FormGroup =  this.formBuilder.group({
-    animals: [
-        [
-            {
-                'name': 'Gazelle'
-            },
-            {
-                'name': 'Cat'
-            }
-        ]
-    ],
-  });
+public form: FormGroup = this.formBuilder.group({
+  animals: [[
+    { name: 'Gazelle' },
+    { name: 'Cat' }
+  ]]
+});
 ```
 
 
@@ -72,7 +71,7 @@ Form structure
 
 ### @Outputs
 
-| Attribute Name | Type | Description |
+| Name | Type | Description |
 | --- | --- | --- |
-| onTagAdded | fn | Callback fn after added tag |
-| onTagRemoved | fn | Callback fn after removed tag |
+| onTagAdded | EventEmitter | Emitted after a tag is added |
+| onTagRemoved | EventEmitter | Emitted after a tag is removed |
